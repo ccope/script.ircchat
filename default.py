@@ -171,6 +171,9 @@ class irc_client(threading.Thread):
 
     def update_chat(self, message):
         control = self.window.getControl(1331)
+        # Clear the history when it gets big
+        if control.size() > 10000:
+            control.reset()
         control.addItem(xbmcgui.ListItem(label2=message[0]))
         new_message = []
         words = message[1].split()
@@ -191,10 +194,7 @@ class irc_client(threading.Thread):
             new_message.append(new_line.strip())
         for i in new_message:
             control.addItem(xbmcgui.ListItem(label=i))
-        c_size = control.size()
-        control.selectItem(c_size-1)
-        xbmc.executebuiltin("Control.move(1331, %s)" %c_size)
-        # addon_log('List Size: %s' %c_size)
+        control.selectItem(control.size() - 1)
         return
 
     def send_message(self, message):

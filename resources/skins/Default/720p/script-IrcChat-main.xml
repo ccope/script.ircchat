@@ -402,8 +402,9 @@
 				<onup>1300</onup>
 				<ondown>1300</ondown>
 				<pagecontrol>60</pagecontrol>
-				<scrolltime tween="cubic" easing="out">600</scrolltime>
+				<scrolltime tween="linear">200</scrolltime>
 				<orientation>vertical</orientation>
+                <autoscroll>true</autoscroll>
 									
 				<itemlayout height="25" width="350">
 					
@@ -429,7 +430,7 @@
 						<aligny>center</aligny>
 						<align>left</align>
 						<label>$INFO[ListItem.Label]</label>
-						<scroll>false</scroll>
+                        <wrapmultiline>true</wrapmultiline>
 					</control>
 					
 				</itemlayout>
@@ -457,7 +458,7 @@
 						<aligny>center</aligny>
 						<align>left</align>
 						<label>$INFO[ListItem.Label]</label>
-						<scroll>false</scroll>
+                        <wrapmultiline>true</wrapmultiline>
 					</control>
 				
 				</focusedlayout>

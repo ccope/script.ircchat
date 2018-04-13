@@ -172,29 +172,7 @@ class irc_client(threading.Thread):
     def update_chat(self, message):
         control = self.window.getControl(1331)
         control.addItem(xbmcgui.ListItem(label2=message[0]))
-        new_message = []
-        words = message[1].split()
-        new_line = ''
-        for i in range(len(words)):
-            if len(words[i]) < 38:
-                if (len(words[i]) + len(new_line)) < 38:
-                    new_line += words[i]+' '
-                else:
-                    new_message.append(new_line.strip())
-                    new_line = words[i]+' '
-                if words[i].endswith('\n'):
-                    new_message.append(new_line.strip())
-                    new_line = ''
-            else:
-                new_message.append(words[i])
-        if len(new_line.strip()) > 0:
-            new_message.append(new_line.strip())
-        for i in new_message:
-            control.addItem(xbmcgui.ListItem(label=i))
-        c_size = control.size()
-        control.selectItem(c_size-1)
-        xbmc.executebuiltin("Control.move(1331, %s)" %c_size)
-        # addon_log('List Size: %s' %c_size)
+        control.addItem(xbmcgui.ListItem(label=message[1]))
         return
 
     def send_message(self, message):
